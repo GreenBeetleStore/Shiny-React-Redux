@@ -1,22 +1,27 @@
+import { useSelector } from 'react-redux'
 import { createGlobalStyle } from 'styled-components'
-import { useTheme } from '../hooks'
+import { selectTheme } from '../selectors'
 
 const StyledGlobalStyle = createGlobalStyle`
-      * {
-        font-family: 'Trebuchet MS', Helvetica, sans-serif;
-      }
+    * {
+      font-family: 'Trebuchet MS', Helvetica, sans-serif;
+    }
 
-      body {
-            background-color: ${({ isDarkMode }) =>
-               isDarkMode ? '#2F2E41' : 'white'};
-            margin: 0;
-      }
+    a {
+      text-decoration: none;
+    }
+    
+    body {
+        background-color: ${(props) =>
+          props.isDarkMode ? '#2F2E41' : 'white'};
+        margin: 0;
+    }
 `
 
 function GlobalStyle() {
-   const { theme } = useTheme()
-   
-   return <StyledGlobalStyle isDarkMode={theme === 'dark'} />
+  const theme = useSelector(selectTheme)
+
+  return <StyledGlobalStyle isDarkMode={theme === 'dark'} />
 }
 
 export default GlobalStyle
