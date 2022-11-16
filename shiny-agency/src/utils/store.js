@@ -2,6 +2,8 @@
 import { combineReducers, createStore } from 'redux'
 import themeReducer from '../features/theme'
 import freelancesReducer from '../features/freelances'
+import surveyReducer from '../features/survey'
+import freelanceReducer from '../features/freelance'
 
 // on utilise combineReducer pour faire
 // fonctionner plusieurs reducers ensemble
@@ -9,6 +11,8 @@ const reducer = combineReducers({
   // le themeReducer est responsable de la propriété `theme` du state
   theme: themeReducer,
   freelances: freelancesReducer,
+  survey: surveyReducer,
+  freelance: freelanceReducer,
 })
 
 // Pour connecter les Redux Devtools on utilise
