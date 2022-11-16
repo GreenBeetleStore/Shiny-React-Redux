@@ -1,3 +1,4 @@
+
 // On utilise des variables pour les noms des actions pour éviter les fautes de frappe
 const TOGGLE_THEME = 'theme/toggle'
 const SET_THEME = 'theme/set'
