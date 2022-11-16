@@ -5,40 +5,47 @@ import Home from './pages/Home'
 import Survey from './pages/Survey'
 import Results from './pages/Results'
 import Freelances from './pages/Freelances'
+import Profile from './pages/Profile'
 import Header from './components/Header'
-import Error from './components/Error'
 import Footer from './components/Footer'
+import Error from './components/Error'
 import GlobalStyle from './utils/style/GlobalStyle'
-import { ThemeProvider, SurveyProvider } from './utils/context'
+import { SurveyProvider } from './utils/context'
+import { Provider } from 'react-redux'
+import store from './utils/store'
 
 ReactDOM.render(
-   <React.StrictMode>
+  <Provider store={store}>
+    <React.StrictMode>
       <Router>
-         <ThemeProvider>
-            <SurveyProvider>
-               <GlobalStyle />
-               <Header />
-               <Switch>
-                  <Route exact path="/">
-                     <Home />
-                  </Route>
-                  <Route path="/survey/:questionNumber">
-                     <Survey />
-                  </Route>
-                  <Route path="/results">
-                     <Results />
-                  </Route>
-                  <Route path="/freelances">
-                     <Freelances />
-                  </Route>
-                  <Route path="*">
-                     <Error />
-                  </Route>
-               </Switch>
-            </SurveyProvider>
-            <Footer />
-         </ThemeProvider>
+        <SurveyProvider>
+          <GlobalStyle />
+          <Header />
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/survey/:questionNumber">
+              <Survey />
+            </Route>
+            <Route path="/results">
+              <Results />
+            </Route>
+            <Route path="/freelances">
+              <Freelances />
+            </Route>
+            <Route
+              path="/profile/:id"
+              render={(props) => <Profile {...props} />}
+            />
+            <Route path="*">
+              <Error />
+            </Route>
+          </Switch>
+          <Footer />
+        </SurveyProvider>
       </Router>
-   </React.StrictMode>,
-   document.getElementById('root')
+    </React.StrictMode>
+  </Provider>,
+  document.getElementById('root')
 )
